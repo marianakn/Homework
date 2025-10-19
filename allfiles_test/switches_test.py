@@ -1,11 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 import time
+import pytest
+from selenium.webdriver.common.by import By
 
-try:
+
+def test_homework_tasks(driver):
     #Homework1
-    driver = webdriver.Chrome()
-    driver.maximize_window()
     driver.get("https://demoqa.com/frames")
     iframe = driver.find_element(By.ID, "frame1")
     driver.execute_script("arguments[0].scrollIntoView();", iframe)
@@ -35,7 +34,6 @@ try:
     print("Back to main window:", driver.current_url)
 
     #homework3 - this one sometimes throws error maybe bc of the website?
-
     # new_window_button = driver.find_element(By.ID, "windowButton")
     # driver.execute_script("arguments[0].scrollIntoView();", new_window_button)
     # new_window_button.click()
@@ -76,8 +74,3 @@ try:
     prompt_alert.accept()
     result_text = driver.find_element(By.ID, "promptResult").text
     print("Result message:", result_text)
-
-
-
-finally:
-    driver.quit()
